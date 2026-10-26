@@ -82,3 +82,27 @@ GBSBFORYOU Publications
 - प्रश्नावली के उत्तरों को स्थानीय रूप से सुरक्षित रखने या JSON में डाउनलोड करने की सुविधा है।
 
 **सीमा:** बाहरी फाइल लिंक दर्ज करने की सुविधा है, लेकिन इस static page से फाइल सीधे अपलोड नहीं होती। Google Sheet में ऑनलाइन जमा करने से पहले Apps Script Web App को deploy करके URL डालना होगा।
+
+
+## प्रश्नावली शेयर लिंक + वास्तविक फाइल अपलोड + Google Sheets
+**हरिभाऊ राठौड़ जी की प्रश्नावली:** https://ajaysingh132.github.io/GBSBFORYOU-Interview-Master-Register/interview.html
+
+इस संस्करण में 10 शोध प्रश्न, हर प्रश्न के सामने विस्तृत उत्तर, प्रति प्रश्न फोटो/वीडियो/ऑडियो/PDF/दस्तावेज़ चुनने का विकल्प और शेयर लिंक नियंत्रण है। फाइलें जमा करने पर Apps Script उन्हें Google Drive के `GBSBFORYOU Interview Evidence` फोल्डर में रखने और Google Sheet में लिंक तथा Asset ID लिखने के लिए बनाया गया है।
+
+### Google Sheet और Drive एक बार जोड़ें
+1. अपनी Google Sheet बनाएँ और **Extensions → Apps Script** खोलें।
+2. इस repo की `google-apps-script/Code.gs` फाइल का पूरा कोड Apps Script में रखें और सेव करें।
+3. **Deploy → New deployment → Web app** चुनें; Execute as: **Me** रखें। यदि वक्ता बिना Google लॉगिन के जमा करेंगे तो Access में “Anyone” चुनना पड़ सकता है। यह सार्वजनिक endpoint है—URL को अनावश्यक रूप से सार्वजनिक न करें।
+4. अनुमति माँगे जाने पर Google Sheets और Google Drive की अनुमतियाँ स्वीकार करें।
+5. Deploy से मिला `/exec` URL कॉपी करें।
+6. प्रश्नावली खोलें। यदि endpoint बॉक्स दिखे तो उसमें URL डालें; अन्यथा उत्तर वाले भाग में **Google Apps Script Web App URL** डालें। एक बार URL दर्ज करने पर उसी ब्राउज़र में याद रखा जाएगा।
+7. एक छोटा परीक्षण जमा करें। Google Sheet में ये टैब बनने/भरने चाहिए:
+   - `Interview Master`: प्रत्येक साक्षात्कार का सारांश
+   - `Interview Responses`: हर प्रश्न का उत्तर, प्रश्न ID, संलग्न सामग्री के लिंक और Asset ID
+   - `Asset Register`: हर फाइल की विशिष्ट Asset ID, मूल नाम, Drive URL और संदर्भ
+8. Google Drive में `GBSBFORYOU Interview Evidence` फोल्डर में फाइलों की जाँच करें। फाइलें अपने-आप सार्वजनिक नहीं की जातीं; आवश्यक लोगों को Drive permissions अलग से दें।
+
+### अपलोड सीमा और सावधानी
+- प्रत्येक फाइल अधिकतम 5 MB; एक जमा में कुल फाइलें 15 MB से कम रखें। बड़ी वीडियो फाइल के लिए Google Drive पर अलग अपलोड करके लिंक जोड़ना बेहतर है।
+- यह Apps Script deployment इस समय आपके Google खाते से स्वयं deploy नहीं किया गया है। ऊपर दिए गए एक बार के सेटअप और परीक्षण के बिना डेटा Google Sheet में नहीं पहुँचेगा।
+- सार्वजनिक submission URL पर स्पैम का जोखिम है। पहले सीमित परीक्षण करें और अनपेक्षित रिकॉर्ड जाँचें।
