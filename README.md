@@ -35,3 +35,28 @@ https://ajaysingh132.github.io/GBSBFORYOU-Interview-Master-Register/
 
 ## परियोजना
 GBSBFORYOU Publications
+
+
+## ऑनलाइन साक्षात्कार लेने का पेज
+- पेज निर्माता: https://ajaysingh132.github.io/GBSBFORYOU-Interview-Master-Register/interview.html
+- यहाँ साक्षात्कार शीर्षक, व्यक्ति, विषय और प्रश्न भरकर उत्तर दर्ज किए जा सकते हैं।
+- प्रश्नावली JSON टेम्पलेट डाउनलोड किया जा सकता है।
+- उत्तर अभी स्थानीय बैकअप में भी रखे जाते हैं।
+
+## Google Sheet से जोड़ना (एक बार का सेटअप)
+**ध्यान दें:** GitHub Pages अकेले Google Sheet में लिख नहीं सकता। नीचे दिया गया Apps Script पहले Google Sheet से जोड़कर Web App के रूप में deploy करना आवश्यक है।
+
+1. एक नई Google Sheet बनाएँ।
+2. Sheet में **Extensions → Apps Script** खोलें।
+3. इस रिपॉजिटरी की `google-apps-script/Code.gs` फाइल का पूरा कोड वहाँ कॉपी करें।
+4. Apps Script को उसी Google Sheet से जोड़कर सेव करें।
+5. **Deploy → New deployment → Web app** चुनें।
+6. Execute as: **Me** चुनें। Access को अपने इस्तेमाल के अनुरूप चुनें; सार्वजनिक साक्षात्कारदाता से उत्तर लेना हो तो आम तौर पर “Anyone” की जरूरत होगी—इसका अर्थ है कि URL रखने वाला व्यक्ति डेटा भेज सकता है, इसलिए लिंक साझा करने में सावधानी रखें।
+7. Deploy के बाद मिलने वाला `/exec` URL कॉपी करें।
+8. ऑनलाइन साक्षात्कार पेज खोलें, Web App URL वाले बॉक्स में डालें, फिर साक्षात्कार पेज तैयार करें।
+9. परीक्षण उत्तर जमा करें और Google Sheet के `Interview Responses` टैब में जाँचें।
+
+हर प्रश्न का उत्तर अलग पंक्ति में सहेजा जाएगा और Interview ID से जुड़ेगा। ऑडियो/वीडियो फाइलें अभी Google Drive पर स्वतः अपलोड नहीं होतीं; इस संस्करण में ऑडियो/प्रतिलेख लिंक या अलग फाइल व्यवस्था चाहिए। Apps Script deployment URL इस सार्वजनिक README में न डालें।
+
+## प्रकाशन सीमा
+“साक्षात्कार पेज तैयार करें” उसी साझा पेज पर प्रश्नावली बनाता है; यह अपने-आप हर साक्षात्कार के लिए नया स्थायी URL प्रकाशित नहीं करता। किसी खास व्यक्ति के लिए अलग सार्वजनिक URL की आवश्यकता हो तो अगली अवस्था में query/template आधारित share link या server-side page generation जोड़ा जा सकता है।
