@@ -12,11 +12,11 @@ function doPost(e) {
     if (!ss) throw new Error('Attach this script to the destination Google Sheet first.');
     var sheet = ss.getSheetByName('Interview Responses');
     if (!sheet) sheet = ss.insertSheet('Interview Responses');
-    var headers = ['Submitted At', 'Interview ID', 'Title', 'Person', 'Interviewer', 'Topic', 'Respondent', 'Consent', 'Question No.', 'Question', 'Answer'];
+    var headers = ['Submitted At', 'Interview ID', 'Title', 'Person', 'Interviewer', 'Topic', 'Respondent', 'Consent', 'Question No.', 'Question', 'Answer', 'Attachment Link', 'Attachment Note'];
     if (sheet.getLastRow() === 0) sheet.appendRow(headers);
     var submitted = data.submittedAt || new Date().toISOString();
     (data.answers || []).forEach(function(a, i) {
-      sheet.appendRow([submitted, data.interviewId || '', data.title || '', data.person || '', data.interviewer || '', data.topic || '', data.respondent || '', data.consent || '', i + 1, a.question || '', a.answer || '']);
+      sheet.appendRow([submitted, data.interviewId || '', data.title || '', data.person || '', data.interviewer || '', data.topic || '', data.respondent || '', data.consent || '', i + 1, a.question || '', a.answer || '', a.attachmentLink || '', a.attachmentNote || '']);
     });
     return output_({ ok: true, message: 'Saved', interviewId: data.interviewId || '' });
   } catch (err) {
